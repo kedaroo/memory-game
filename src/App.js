@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import SingleCard from "./components/SingleCard";
+import Modal from './components/Modal';
 
 const cardImages = [
   { "src": "/img/helmet-1.png", matched: false },
@@ -11,13 +12,16 @@ const cardImages = [
   { "src": "/img/sword-1.png", matched: false }
 ];
 
-function App() {
+export default function App() {
 
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
 
   const duplicateItems = (arr, times) => {
     let res = [];
@@ -36,12 +40,17 @@ function App() {
 
     setChoiceOne(null);
     setChoiceTwo(null);
+    setShowScore(false);
     setCards(shuffledCards);
     setTurns(0);
   }, []);
   
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+  }
+
+  const closeModal = () => {
+    setShowModal(false);
   }
 
   useEffect(() => {
@@ -58,17 +67,21 @@ function App() {
           })
         })
         resetTurn();
+        setScore(prevScore => prevScore + 1);
       } else {
         setTimeout(() => resetTurn(), 1000);
       }
     }
-  }, [choiceOne, choiceTwo]);
+    if (score === 6) {
+      setShowScore(true);
+    }
+  }, [choiceOne, choiceTwo, score]);
 
   useEffect(() => {
     shuffleCards();
   }, [shuffleCards]);
   
-  console.log(cards);
+  // console.log(setShowScore);
 
   const resetTurn = () => {
     setChoiceOne(null);
@@ -94,8 +107,29 @@ function App() {
         ))}
       </div>
       <p>turns: {turns}</p>
+
+      {showModal && <Modal>
+          <h2>welcome to memory game!</h2>
+          <p>
+              there are 6 pairs of unique pictures of magic
+              items such as a helmet, a scroll, sword, etc.
+              it's your task to figure out these pairs using
+              your strong memory with a minimum number of turns!
+          </p>
+          <h3>all the best!</h3>
+          <button onClick={closeModal}>let's begin</button>
+        </Modal>}
+
+      {showScore && <Modal>
+        <h2>you won!</h2>
+        <p>
+          congratulations dear wizard! you have completed the quest
+          to become a strong and magical wizard! would you like to 
+          go on the quest again?
+        </p>
+        <p>You managed to win in {turns} number of turns!</p>
+        <button onClick={shuffleCards}>play again</button>
+        </Modal>}
     </div>
   );
 }
-
-export default App
