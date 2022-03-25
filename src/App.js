@@ -111,8 +111,7 @@ export default function App() {
       {showModal && <Modal>
           <h2>welcome to memory game!</h2>
           <p>
-              there are 6 pairs of unique pictures of magic
-              items such as a helmet, a scroll, sword, etc.
+              there are 6 pairs of extremely special and unique pictures.
               it's your task to figure out these pairs using
               your strong memory with a minimum number of turns!
           </p>
@@ -123,9 +122,8 @@ export default function App() {
       {showScore && <Modal>
         <h2>you won!</h2>
         <p>
-          congratulations dear wizard! you have completed the quest
-          to become a strong and magical wizard! would you like to 
-          go on the quest again?
+          congratulations! you have completed the quest
+          would you like to go at it again?
         </p>
         <p>You managed to win in {turns} number of turns!</p>
         <button onClick={shuffleCards}>play again</button>
