@@ -9,11 +9,12 @@
 
 .modal {
     color: black;
-    margin: 50px auto;
+    margin: 2rem auto;
+    width: 80%;
     max-width: 400px;
     background: #fff;
     border-radius: 16px;
-    padding: 2em;
+    padding: 2rem 1rem;
 }
 
 .modal h3 {
