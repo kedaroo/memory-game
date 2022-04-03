@@ -14,15 +14,16 @@
     max-width: 400px;
     background: #fff;
     border-radius: 16px;
-    padding: 2rem 1rem;
+    padding: 2rem;
 }
 
 .modal h3 {
-    text-align: center;
+    /* text-align: center; */
 }
 
 .modal p {
-    text-align: justify;
+    font-size: 1.5rem;
+    text-align: start;
 }
 
 .modal button {
