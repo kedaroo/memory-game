@@ -92,8 +92,8 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Memory Game</h1>
-      <button onClick={shuffleCards} >New Game</button>
+      <h1>memory game</h1>
+      <button onClick={shuffleCards} >new game</button>
 
       <div className="card-grid">
         {cards.map(card => (
